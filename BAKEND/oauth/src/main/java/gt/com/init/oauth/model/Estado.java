@@ -1,6 +1,8 @@
 package gt.com.init.oauth.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,15 +17,17 @@ public class Estado {
     private String estado;
     private String observaciones;
     private Date fecha_creacion;
-    public Estado(){
-        super();
-    }
-    public Estado(Long id, String estado, String observaciones, Date fecha_creacion) {
-        super();
-        this.id = id;
-        this.estado = estado;
-        this.fecha_creacion = fecha_creacion;
-    }
+	public Estado() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Estado(Long id, String estado, String observaciones, Date fecha_creacion) {
+		super();
+		this.id = id;
+		this.estado = estado;
+		this.observaciones = observaciones;
+		this.fecha_creacion = fecha_creacion;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -47,5 +51,7 @@ public class Estado {
 	}
 	public void setFecha_creacion(Date fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
-	} 
+	}
+
+
 }

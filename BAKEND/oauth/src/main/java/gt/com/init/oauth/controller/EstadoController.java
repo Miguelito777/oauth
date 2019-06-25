@@ -8,31 +8,32 @@ import java.util.List;
 
 import gt.com.init.oauth.exception.EstadoNotFoundException; 
 import gt.com.init.oauth.model.Estado;
-import gt.com.init.oauth.manager.UsuarioManager;
+import gt.com.init.oauth.manager.EstadoManager;
 
 @RestController
+@RequestMapping("Estado")
 public class EstadoController {
 	@Autowired
-	UsuarioManager manager;
+	EstadoManager manager;
 	
 	
 	// Get All 
-    @GetMapping("/Estados")
+    @GetMapping("All")
     public List<Estado> getAll() {
         return manager.findAll();
     }
  // Create a new 
-    @PostMapping("/Estado")
+    @PostMapping("New")
     public Estado create(@Valid @RequestBody Estado item) {
         return manager.save(item);
     }
  // Get a Single 
-    @GetMapping("/estado/{id}")
+    @GetMapping("{id}")
     public Estado getById(@PathVariable(value = "id") Long id) throws EstadoNotFoundException {
         return manager.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
     }
  // Update 
-    @PutMapping("/estado/{id}")
+    @PutMapping("{id}")
     public Estado updateById(@PathVariable(value = "id") Long id, @Valid @RequestBody Estado item) throws EstadoNotFoundException {
     	Estado obj = manager.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
     	obj.setEstado(item.getEstado());
@@ -42,7 +43,7 @@ public class EstadoController {
     	return updatedBook;
     }
  // Delete a 
-    @DeleteMapping("/estado/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<?> deleteById(@PathVariable(value = "id") Long id) throws EstadoNotFoundException {
         Estado obj = manager.findById(id).orElseThrow(() -> new EstadoNotFoundException(id));
         manager.delete(obj);
